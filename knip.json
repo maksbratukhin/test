@@ -1,0 +1,63 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": [".storybook/**/*.{ts,tsx}", "jest.preset.js", "jest.setup.js"],
+      "project": ["**/*.{ts,tsx,js,jsx}"]
+    },
+    "apps/project-a": {
+      "entry": [
+        "app/**/*.{ts,tsx}",
+        "components/**/*.{ts,tsx}",
+        "lib/**/*.{ts,tsx}",
+        "__tests__/**/*.{ts,tsx}"
+      ],
+      "project": ["**/*.{ts,tsx,js,jsx}"]
+    },
+    "apps/project-b": {
+      "entry": [
+        "app/**/*.{ts,tsx}",
+        "components/**/*.{ts,tsx}",
+        "lib/**/*.{ts,tsx}",
+        "__tests__/**/*.{ts,tsx}"
+      ],
+      "project": ["**/*.{ts,tsx,js,jsx}"]
+    },
+    "packages/shared-components": {
+      "entry": ["src/**/*.{ts,tsx}"],
+      "project": ["src/**/*.{ts,tsx}"]
+    },
+    "packages/shared-lib": {
+      "entry": ["src/**/*.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/types": {
+      "entry": ["src/**/*.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/constants": {
+      "entry": ["src/**/*.ts"],
+      "project": ["src/**/*.ts"]
+    }
+  },
+  "ignore": ["dist/**", ".next/**", "node_modules/**", "coverage/**", "**/*.d.ts"],
+  "ignoreDependencies": [
+    "@nx/react",
+    "@nx/workspace",
+    "eslint",
+    "eslint-config-next",
+    "@typescript-eslint/eslint-plugin",
+    "autoprefixer",
+    "postcss",
+    "tailwindcss",
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+    "ts-node",
+    "@tanstack/react-query",
+    "clsx",
+    "zustand",
+    "jest",
+    "tslib"
+  ]
+}

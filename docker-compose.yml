@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  project-a:
+    build:
+      context: .
+      dockerfile: Dockerfile.project-a
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    container_name: product-portal-project-a
+
+  project-b:
+    build:
+      context: .
+      dockerfile: Dockerfile.project-b
+    ports:
+      - '3001:3001'
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    container_name: product-portal-project-b

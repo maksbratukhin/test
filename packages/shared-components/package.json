@@ -1,0 +1,23 @@
+{
+  "name": "@product-portal/shared-components",
+  "version": "1.0.0",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "dependencies": {
+    "@product-portal/types": "*",
+    "@product-portal/shared-lib": "*",
+    "@tanstack/react-query": "^5.62.12",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^19.0.1",
+    "jest": "^29.7.0"
+  }
+}

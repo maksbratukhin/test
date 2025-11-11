@@ -1,0 +1,45 @@
+FROM node:20-alpine AS base
+
+WORKDIR /app
+
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+
+COPY package*.json ./
+COPY packages ./packages
+COPY apps/project-b/package.json ./apps/project-b/
+
+RUN npm install
+
+FROM base AS builder
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/packages ./packages
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN cd apps/project-b && npm run build
+
+FROM base AS runner
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/apps/project-b/.next ./apps/project-b/.next
+COPY --from=builder /app/apps/project-b/public ./apps/project-b/public
+COPY --from=builder /app/apps/project-b/package.json ./apps/project-b/
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/packages ./packages
+
+USER nextjs
+
+EXPOSE 3001
+
+WORKDIR /app/apps/project-b
+
+CMD ["npm", "start"]
+
