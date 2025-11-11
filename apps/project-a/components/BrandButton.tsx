@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@product-portal/shared-components';
+import { BrandButton as SharedBrandButton } from '@product-portal/shared-components';
 import { brandConfig } from '../lib/brand-config';
 
 interface BrandButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,23 +9,10 @@ interface BrandButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
   fullWidth?: boolean;
 }
 
-export function BrandButton({ children, onClick, fullWidth, ...props }: BrandButtonProps) {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(`[Brand Action] ${brandConfig.alertMessage}`);
-    if (onClick) {
-      onClick(e);
-    }
-  };
-
+export function BrandButton({ children, ...props }: BrandButtonProps) {
   return (
-    <Button
-      variant={brandConfig.buttonVariant}
-      backgroundColor={brandConfig.primaryColor}
-      onClick={handleClick}
-      fullWidth={fullWidth}
-      {...props}
-    >
+    <SharedBrandButton brandConfig={brandConfig} {...props}>
       {children}
-    </Button>
+    </SharedBrandButton>
   );
 }

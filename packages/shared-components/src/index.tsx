@@ -7,3 +7,5 @@ export { Header } from './Header';
 export { MarketWarning } from './MarketWarning';
 export { MarketWarningWrapper } from './MarketWarningWrapper';
 export { MarketAccessGuard } from './MarketAccessGuard';
+export { BrandButton } from './BrandButton';
+export { BrandProductCard } from './BrandProductCard';

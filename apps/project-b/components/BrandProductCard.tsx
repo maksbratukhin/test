@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ProductCard } from '@product-portal/shared-components';
+import { BrandProductCard as SharedBrandProductCard } from '@product-portal/shared-components';
 import { Product } from '@product-portal/types';
 import { brandConfig } from '../lib/brand-config';
 import { useRouter } from 'next/navigation';
@@ -14,18 +14,12 @@ interface BrandProductCardProps {
 export function BrandProductCard({ product, market }: BrandProductCardProps) {
   const router = useRouter();
 
-  const handleCardClick = (product: Product) => {
-    router.push(`/${market}/product/${product.slug}`);
-  };
-
   return (
-    <ProductCard
+    <SharedBrandProductCard
       product={product}
-      layout={brandConfig.layout}
-      showCategoryTags={brandConfig.showCategoryTags}
-      thumbnailCount={brandConfig.productCardThumbnails}
-      primaryColor={brandConfig.primaryColor}
-      onCardClick={handleCardClick}
+      market={market}
+      brandConfig={brandConfig}
+      onNavigate={router.push}
     />
   );
 }
